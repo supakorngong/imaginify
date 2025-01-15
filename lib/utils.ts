@@ -69,15 +69,19 @@ export function removeKeysFromQuery({ searchParams, keysToRemove }: RemoveUrlQue
 }
 
 // DEBOUNCE
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const debounce = (func: (...args: any[]) => void, delay: number) => {
   let timeoutId: NodeJS.Timeout | null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (...args: any[]) => {
     if (timeoutId) clearTimeout(timeoutId);
+    // eslint-disable-next-line prefer-spread
     timeoutId = setTimeout(() => func.apply(null, args), delay);
   };
 };
 // GE IMAGE SIZE
 export type AspectRatioKey = keyof typeof aspectRatioOptions;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getImageSize = (type: string, image: any, dimension: "width" | "height"): number => {
   if (type === "fill") {
     return aspectRatioOptions[image.aspectRatio as AspectRatioKey]?.[dimension] || 1000;
@@ -105,6 +109,7 @@ export const download = (url: string, filename: string) => {
     .catch((error) => console.log({ error }));
 };
 // DEEP MERGE OBJECTS
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const deepMergeObjects = (obj1: any, obj2: any) => {
   if (obj2 === null || obj2 === undefined) {
     return obj1;
